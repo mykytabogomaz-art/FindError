@@ -1,1 +1,233 @@
 
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання: Знайди помилку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .task-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .nav-btn {
+            background-color: #2196F3;
+        }
+        .nav-btn:hover {
+            background-color: #1976D2;
+        }
+        .result-message {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 20px;
+        }
+        .success {
+            color: #2e7d32;
+        }
+        .error {
+            color: #c62828;
+        }
+        .final-screen {
+            text-align: center;
+        }
+        .final-screen h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .cucumber-icon {
+            font-size: 100px;
+            margin: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Завдання 1 -->
+    <div id="task1" class="task-container">
+        <audio controls>
+            <source src="1.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 1: Знайди помилку</h3>
+
+        <select id="mistake-select-1">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_name">Марія не працювала в магазині</option>
+            <option value="wrong_clothes">Марія продавала одяг</option>
+            <option value="wrong_smile">Марія ніколи не усміхалася</option>
+            <option value="correct_answer">Морква — це овоч</option>
+            <option value="wrong_sweets">У магазині не було солодощів</option>
+            <option value="wrong_breaks">Марія не робила перерв</option>
+        </select>
+
+        <button onclick="checkAnswer(1, 'correct_answer')">Перевірити</button>
+        <div id="result-message-1" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(2)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 2 -->
+    <div id="task2" class="task-container hidden">
+        <audio controls>
+            <source src="2.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 2: Знайди помилку</h3>
+
+        <select id="mistake-select-2">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_weather">На вулиці йшов сильний дощ</option>
+            <option value="wrong_location">Олег пішов гуляти в ліс</option>
+            <option value="correct_answer">Яблука не бувають квадратними</option>
+            <option value="wrong_bag">Олег забув свою сумку вдома</option>
+            <option value="wrong_fruit">Олег дістав банан, а не яблуко</option>
+            <option value="wrong_action">Олег бігав, а не сидів на лавці</option>
+        </select>
+
+        <button onclick="checkAnswer(2, 'correct_answer')">Перевірити</button>
+        <div id="result-message-2" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(3)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 3 -->
+    <div id="task3" class="task-container hidden">
+        <audio controls>
+            <source src="3.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 3: Знайди помилку</h3>
+
+        <select id="mistake-select-3">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_snow">Діти будували замок зі снігу</option>
+            <option value="wrong_quiet">На вулиці було дуже тихо</option>
+            <option value="wrong_look">Діти дивилися під ноги</option>
+            <option value="correct_answer">Потяги не літають у небі</option>
+            <option value="wrong_hide">Діти гралися у хованки</option>
+        </select>
+
+        <button onclick="checkAnswer(3, 'correct_answer')">Перевірити</button>
+        <div id="result-message-3" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showFinalScreen()">Завершити ➔</button>
+    </div>
+
+    <!-- Фінальний екран -->
+    <div id="final-screen" class="task-container hidden final-screen">
+        <h2>Молодець, як солоний огірок!</h2>
+        <div class="cucumber-icon">🥒</div>
+    </div>
+
+    <script>
+        // Функція для перевірки відповіді
+        function checkAnswer(taskNumber, correctAnswerValue) {
+            const selectElement = document.getElementById(`mistake-select-${taskNumber}`);
+            const resultMessage = document.getElementById(`result-message-${taskNumber}`);
+            const selectedValue = selectElement.value;
+
+            if (selectedValue === "") {
+                resultMessage.textContent = "Будь ласка, оберіть варіант зі списку.";
+                resultMessage.className = "result-message error";
+            } else if (selectedValue === correctAnswerValue) {
+                if (taskNumber === 1) {
+                    resultMessage.textContent = "Правильно! Морква — це дійсно овоч, а не фрукт.";
+                } else if (taskNumber === 2) {
+                    resultMessage.textContent = "Правильно! У природі яблука круглі, а не квадратні.";
+                } else if (taskNumber === 3) {
+                    resultMessage.textContent = "Правильно! Потяги їздять по рейках, а в небі літають літаки.";
+                }
+                resultMessage.className = "result-message success";
+            } else {
+                resultMessage.textContent = "Неправильно. Спробуй ще раз!";
+                resultMessage.className = "result-message error";
+            }
+        }
+
+        // Функція для перемикання між завданнями
+        function showTask(taskNumber) {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById(`task${taskNumber}`).classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        // Функція для показу фінального екрану
+        function showFinalScreen() {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById("final-screen").classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        // Функція зупинки аудіо
+        function stopAllAudio() {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+    </script>
+
+</body>
+</html>

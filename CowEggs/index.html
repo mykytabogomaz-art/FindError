@@ -1,1 +1,231 @@
 
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання: Знайди помилку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .task-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .nav-btn {
+            background-color: #2196F3;
+        }
+        .nav-btn:hover {
+            background-color: #1976D2;
+        }
+        .result-message {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 20px;
+        }
+        .success {
+            color: #2e7d32;
+        }
+        .error {
+            color: #c62828;
+        }
+        .final-screen {
+            text-align: center;
+        }
+        .final-screen h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .cucumber-icon {
+            font-size: 100px;
+            margin: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Завдання 1 -->
+    <div id="task1" class="task-container">
+        <audio controls>
+            <source src="1.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 1: Знайди помилку</h3>
+
+        <select id="mistake-select-1">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_location">Дідусь Іван жив у великому місті</option>
+            <option value="wrong_animal">У дідуся була коза, а не корова</option>
+            <option value="correct_answer">Корови не несуть яйця</option>
+            <option value="wrong_milk">Корова Зірка не давала молока</option>
+            <option value="wrong_breakfast">Дідусь не любив снідати</option>
+        </select>
+
+        <button onclick="checkAnswer(1, 'correct_answer')">Перевірити</button>
+        <div id="result-message-1" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(2)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 2 -->
+    <div id="task2" class="task-container hidden">
+        <audio controls>
+            <source src="2.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 2: Знайди помилку</h3>
+
+        <select id="mistake-select-2">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_school">Оленка не ходила до школи</option>
+            <option value="wrong_food">На столі стояла тарілка каші</option>
+            <option value="wrong_hands">Оленка забула помити руки</option>
+            <option value="correct_answer">Рідкий суп не їдять виделкою</option>
+            <option value="wrong_play">Після обіду Оленка пішла спати</option>
+        </select>
+
+        <button onclick="checkAnswer(2, 'correct_answer')">Перевірити</button>
+        <div id="result-message-2" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(3)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 3 -->
+    <div id="task3" class="task-container hidden">
+        <audio controls>
+            <source src="3.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <h3>Завдання 3: Знайди помилку</h3>
+
+        <select id="mistake-select-3">
+            <option value="" disabled selected>Оберіть варіант відповіді...</option>
+            <option value="wrong_color">Машина була синього кольору</option>
+            <option value="wrong_buy">Максим знайшов машину на вулиці</option>
+            <option value="wrong_friends">Максим поїхав на роботу, а не до друзів</option>
+            <option value="wrong_people">На вулиці не було людей</option>
+            <option value="correct_answer">Колеса у машини круглі, а не квадратні</option>
+        </select>
+
+        <button onclick="checkAnswer(3, 'correct_answer')">Перевірити</button>
+        <div id="result-message-3" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showFinalScreen()">Завершити ➔</button>
+    </div>
+
+    <!-- Фінальний екран -->
+    <div id="final-screen" class="task-container hidden final-screen">
+        <h2>Молодець, як солоний огірок!</h2>
+        <div class="cucumber-icon">🥒</div>
+    </div>
+
+    <script>
+        // Функція для перевірки відповіді
+        function checkAnswer(taskNumber, correctAnswerValue) {
+            const selectElement = document.getElementById(`mistake-select-${taskNumber}`);
+            const resultMessage = document.getElementById(`result-message-${taskNumber}`);
+            const selectedValue = selectElement.value;
+
+            if (selectedValue === "") {
+                resultMessage.textContent = "Будь ласка, оберіть варіант зі списку.";
+                resultMessage.className = "result-message error";
+            } else if (selectedValue === correctAnswerValue) {
+                if (taskNumber === 1) {
+                    resultMessage.textContent = "Правильно! Корови дають молоко, а яйця несуть пташки.";
+                } else if (taskNumber === 2) {
+                    resultMessage.textContent = "Правильно! Рідкий суп їдять ложкою, а не виделкою.";
+                } else if (taskNumber === 3) {
+                    resultMessage.textContent = "Правильно! У машини колеса круглі, інакше вона не зможе їхати.";
+                }
+                resultMessage.className = "result-message success";
+            } else {
+                resultMessage.textContent = "Неправильно. Спробуй ще раз!";
+                resultMessage.className = "result-message error";
+            }
+        }
+
+        // Функція для перемикання між завданнями
+        function showTask(taskNumber) {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById(`task${taskNumber}`).classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        // Функція для показу фінального екрану
+        function showFinalScreen() {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById("final-screen").classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        // Функція зупинки аудіо
+        function stopAllAudio() {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+        }
+    </script>
+
+</body>
+</html>

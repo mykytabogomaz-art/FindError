@@ -1,1 +1,248 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання: Знайди помилку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .task-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        h3 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+            outline: none;
+            border-radius: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .check-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+        .check-btn:hover {
+            background-color: #45a049;
+        }
+        .nav-btn {
+            background-color: #2196F3;
+            width: 100%;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .nav-btn:hover {
+            background-color: #1976D2;
+        }
+        .result-message {
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 20px;
+        }
+        .success {
+            color: #2e7d32;
+        }
+        .error {
+            color: #c62828;
+        }
+        .final-screen {
+            text-align: center;
+        }
+        .final-screen h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .cucumber-icon {
+            font-size: 100px;
+            margin: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
 
+    <!-- Завдання 1 -->
+    <div id="task1" class="task-container">
+        <h3>Завдання 1: Знайди помилку</h3>
+        
+        <!-- Стандартний плеєр з повзунком -->
+        <audio controls id="audio-1">
+            <source src="1.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <input type="text" id="answer-1" placeholder="Напиши, що тут не так...">
+
+        <button class="check-btn" onclick="checkTextAnswer(1)">Перевірити</button>
+        <div id="result-message-1" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(2)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 2 -->
+    <div id="task2" class="task-container hidden">
+        <h3>Завдання 2: Знайди помилку</h3>
+        
+        <audio controls id="audio-2">
+            <source src="2.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <input type="text" id="answer-2" placeholder="Напиши, що тут не так...">
+
+        <button class="check-btn" onclick="checkTextAnswer(2)">Перевірити</button>
+        <div id="result-message-2" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showTask(3)">Наступне завдання ➔</button>
+    </div>
+
+    <!-- Завдання 3 -->
+    <div id="task3" class="task-container hidden">
+        <h3>Завдання 3: Знайди помилку</h3>
+        
+        <audio controls id="audio-3">
+            <source src="3.mp3" type="audio/mpeg">
+            Ваш браузер не підтримує аудіоелемент.
+        </audio>
+
+        <input type="text" id="answer-3" placeholder="Напиши, що тут не так...">
+
+        <button class="check-btn" onclick="checkTextAnswer(3)">Перевірити</button>
+        <div id="result-message-3" class="result-message"></div>
+
+        <button class="nav-btn" onclick="showFinalScreen()">Завершити ➔</button>
+    </div>
+
+    <!-- Фінальний екран -->
+    <div id="final-screen" class="task-container hidden final-screen">
+        <h2>Молодець, як солоний огірок!</h2>
+        <div class="cucumber-icon">🥒</div>
+    </div>
+
+    <script>
+        // Перевірка текстової відповіді
+        function checkTextAnswer(taskNumber) {
+            const inputField = document.getElementById(`answer-${taskNumber}`);
+            const answerText = inputField.value.toLowerCase().trim();
+            const resultMessage = document.getElementById(`result-message-${taskNumber}`);
+
+            if (answerText === "") {
+                resultMessage.textContent = "Будь ласка, напиши свою відповідь у поле.";
+                resultMessage.className = "result-message error";
+                return;
+            }
+
+            let isCorrect = false;
+            let successText = "";
+
+            // Перевірка 1: Котик полетів
+            if (taskNumber === 1) {
+                if (answerText.includes("крил") || answerText.includes("лет") || answerText.includes("птах")) {
+                    isCorrect = true;
+                }
+                successText = "Правильно! Котики не мають крил і не вміють літати.";
+            } 
+            // Перевірка 2: Синім олівцем жовте сонце
+            else if (taskNumber === 2) {
+                if (answerText.includes("син") || answerText.includes("жовт") || answerText.includes("олів") || answerText.includes("колір")) {
+                    isCorrect = true;
+                }
+                successText = "Правильно! Синім олівцем неможливо намалювати жовте сонце.";
+            } 
+            // Перевірка 3: Літні плавки взимку
+            else if (taskNumber === 3) {
+                if (answerText.includes("плавк") || answerText.includes("купа") || answerText.includes("літ")) {
+                    isCorrect = true;
+                }
+                successText = "Правильно! Взимку в снігу не гуляють у літніх плавках.";
+            }
+
+            if (isCorrect) {
+                resultMessage.textContent = successText;
+                resultMessage.className = "result-message success";
+                inputField.style.borderColor = "#4CAF50";
+            } else {
+                resultMessage.textContent = "Не зовсім так. Подумай ще або напиши іншим словом!";
+                resultMessage.className = "result-message error";
+                inputField.style.borderColor = "#c62828";
+            }
+        }
+
+        // Перемикання завдань
+        function showTask(taskNumber) {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById(`task${taskNumber}`).classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        function showFinalScreen() {
+            document.getElementById("task1").classList.add("hidden");
+            document.getElementById("task2").classList.add("hidden");
+            document.getElementById("task3").classList.add("hidden");
+            
+            document.getElementById("final-screen").classList.remove("hidden");
+            
+            stopAllAudio();
+        }
+
+        // Функція для зупинки всіх аудіо на сторінці при перемиканні завдань
+        function stopAllAudio() {
+            const audios = document.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                // Не скидаємо currentTime, щоб можна було продовжити слухати з того ж місця, якщо дитина повернеться
+            });
+        }
+    </script>
+
+</body>
+</html>

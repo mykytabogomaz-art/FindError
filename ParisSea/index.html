@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Аудіювання: знайди помилку</title>
+<style>
+  :root {
+    --bg: #fff7e6;
+    --card: #ffffff;
+    --ink: #2b2d42;
+    --accent: #ff7a59;
+    --accent-dark: #e0613f;
+    --ok: #2e9e5b;
+    --bad: #d64545;
+    --line: #f0d9b5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 48px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  main { max-width: 720px; margin: 0 auto; }
+  h1 { text-align: center; font-size: 2rem; margin: 0 0 8px; }
+  .lead { text-align: center; margin: 0 0 12px; font-size: 1.1rem; }
+  .progress { text-align: center; font-weight: bold; margin: 0 0 24px; color: var(--accent-dark); }
+  .task {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+    animation: appear .4s ease;
+  }
+  .task[hidden] { display: none; }
+  @keyframes appear {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  .task h2 { margin: 0 0 12px; font-size: 1.3rem; }
+  .num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    width: 34px; height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  audio { width: 100%; margin-bottom: 14px; }
+  label { display: block; font-weight: bold; margin-bottom: 6px; }
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1.05rem;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-family: inherit;
+  }
+  input[type="text"]:focus { outline: 3px solid #ffd0c4; border-color: var(--accent); }
+  input[type="text"]:disabled { background: #eef8f1; border-color: var(--ok); }
+  .actions { margin-top: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  button {
+    background: var(--accent);
+    color: #fff;
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:hover { background: var(--accent-dark); }
+  button[hidden] { display: none; }
+  .next { background: var(--ok); }
+  .next:hover { background: #247d49; }
+  .result { font-weight: bold; }
+  .result.ok { color: var(--ok); }
+  .result.bad { color: var(--bad); }
+  .finish {
+    display: none;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--ok);
+    background: var(--card);
+    border: 2px solid var(--ok);
+    border-radius: 18px;
+    padding: 24px 16px;
+    animation: appear .4s ease;
+  }
+  .finish.show { display: block; }
+  @media (max-width: 480px) {
+    h1 { font-size: 1.6rem; }
+    .task { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Знайди помилку 🎧</h1>
+  <p class="lead">Послухай текст уважно. У ньому є помилка. Напиши, в чому вона.</p>
+  <p class="progress" id="progress">Завдання 1 з 3</p>
+
+  <section class="task" data-keywords="вод,плив,плав">
+    <h2><span class="num">1</span>Завдання 1</h2>
+    <audio controls preload="metadata" src="audio/1.mp3">Ваш браузер не підтримує аудіо.</audio>
+    <label for="a1">В чому помилка?</label>
+    <input type="text" id="a1" placeholder="Напиши свою відповідь тут" autocomplete="off">
+    <div class="actions">
+      <button type="button" class="check">Перевірити</button>
+      <button type="button" class="next" hidden>Далі →</button>
+      <span class="result" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="task" data-keywords="париж,пляж,мор" hidden>
+    <h2><span class="num">2</span>Завдання 2</h2>
+    <audio controls preload="metadata" src="audio/2.mp3">Ваш браузер не підтримує аудіо.</audio>
+    <label for="a2">В чому помилка?</label>
+    <input type="text" id="a2" placeholder="Напиши свою відповідь тут" autocomplete="off">
+    <div class="actions">
+      <button type="button" class="check">Перевірити</button>
+      <button type="button" class="next" hidden>Далі →</button>
+      <span class="result" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="task" data-keywords="корів,коров,лет,літ" hidden>
+    <h2><span class="num">3</span>Завдання 3</h2>
+    <audio controls preload="metadata" src="audio/3.mp3">Ваш браузер не підтримує аудіо.</audio>
+    <label for="a3">В чому помилка?</label>
+    <input type="text" id="a3" placeholder="Напиши свою відповідь тут" autocomplete="off">
+    <div class="actions">
+      <button type="button" class="check">Перевірити</button>
+      <button type="button" class="next" hidden>Завершити ✔</button>
+      <span class="result" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <div class="finish" id="finish">🎉 Молодець! Ти виконав(ла) всі завдання!</div>
+</main>
+
+<script>
+  // Завдання відкриваються по черзі: наступне з'являється після правильної відповіді.
+  var tasks = Array.prototype.slice.call(document.querySelectorAll('.task'));
+  var progress = document.getElementById('progress');
+  var finish = document.getElementById('finish');
+
+  tasks.forEach(function (task, index) {
+    var input = task.querySelector('input[type="text"]');
+    var result = task.querySelector('.result');
+    var checkBtn = task.querySelector('.check');
+    var nextBtn = task.querySelector('.next');
+    var audio = task.querySelector('audio');
+    var keywords = task.dataset.keywords.split(',');
+
+    function check() {
+      var value = input.value.trim().toLowerCase();
+      if (!value) {
+        result.textContent = 'Спочатку напиши відповідь.';
+        result.className = 'result bad';
+        return;
+      }
+      var ok = keywords.some(function (k) { return value.indexOf(k) !== -1; });
+      if (ok) {
+        result.textContent = 'Правильно! Молодець! 🎉';
+        result.className = 'result ok';
+        input.disabled = true;
+        checkBtn.hidden = true;
+        nextBtn.hidden = false;
+        nextBtn.focus();
+      } else {
+        result.textContent = 'Спробуй послухати ще раз 🙂';
+        result.className = 'result bad';
+      }
+    }
+
+    checkBtn.addEventListener('click', check);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') check();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      audio.pause();
+      nextBtn.hidden = true;
+      task.hidden = true; // попереднє завдання зникає
+      var next = tasks[index + 1];
+      if (next) {
+        next.hidden = false;
+        progress.textContent = 'Завдання ' + (index + 2) + ' з ' + tasks.length;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        next.querySelector('input[type="text"]').focus({ preventScroll: true });
+      } else {
+        progress.textContent = 'Усі завдання виконано!';
+        finish.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
 
